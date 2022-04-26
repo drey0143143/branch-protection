@@ -27,7 +27,7 @@ EOF
 
 variable "github_repo_name" {
   description = "The name of the repository to use with assume role policy trust condition"
-  type        = list
+  type        = list(string)
 }
 
 
