@@ -1,0 +1,23 @@
+name: Changelog & Releases
+on:
+   pull_request:
+   workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # It is required to have a checkout step prior to changelog and release step,to allow action to discover the configuration files.
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 200
+          
+  approve:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Validate, approve and merge release PRs
+              uses: guardian/actions-merge-release-changes-to-protected-branch@v1.0.0
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
